@@ -1,28 +1,11 @@
-const sign = Deno.args[1];
-const numberOne = parseInt(Deno.args[0]);
-const numberTwo = parseInt(Deno.args[2]);
+import { serve } from "https://deno.land/std@0.53.0/http/server.ts";
 
-switch (sign) {
-  case "+":
-    console.log(numberOne + numberTwo);
-    break;
-  case "+":
-    console.log(numberOne - numberTwo);
-    break;
-
-  default:
-    break;
+const s = serve({ port: 8000 });
+console.log("http://localhost:8000/");
+for await (const req of s) {
+  if (req.url === "/" && req.method === "GET") {
+    req.respond({ body: "<h1>Home</h1>" });
+  } else if (req.url === "/about" && req.method === "GET") {
+    req.respond({ body: "<h1>Shahreaz</h1>" });
+  }
 }
-
-const app = {
-  no: false,
-  yes: true,
-};
-
-const play = ["cricket", "football", "golf"];
-
-for (const x of play) {
-  console.table(play);
-}
-
-console.error("name");
