@@ -13,3 +13,16 @@ switch (sign) {
   default:
     break;
 }
+
+const app = {
+  no: false,
+  yes: true,
+};
+
+const play = ["cricket", "football", "golf"];
+
+for (const x of play) {
+  console.table(play);
+}
+
+console.error("name");
