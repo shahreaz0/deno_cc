@@ -1,11 +1,16 @@
-import { serve } from "https://deno.land/std@0.53.0/http/server.ts";
+// imports
+import { Application } from "./deps.js";
+import { magenta } from "./deps.js";
+import router from "./routes.js";
 
-const s = serve({ port: 8000 });
-console.log("http://localhost:8000/");
-for await (const req of s) {
-  if (req.url === "/" && req.method === "GET") {
-    req.respond({ body: "<h1>Home</h1>" });
-  } else if (req.url === "/about" && req.method === "GET") {
-    req.respond({ body: "<h1>Shahreaz</h1>" });
-  }
-}
+// oak configs
+const app = new Application();
+const port = 8000;
+
+// router config
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+// server
+console.log(magenta(`http://localhost:${port}/`));
+await app.listen({ port });
