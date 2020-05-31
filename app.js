@@ -21,6 +21,10 @@ app.use(viewEngine(oakAdapter, ejsEngine));
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+//play
+
+console.log("play");
+
 // server
 console.log(magenta(`http://localhost:${port}/`));
 await app.listen({ port });
